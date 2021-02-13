@@ -1,19 +1,19 @@
-export interface Product {
+export interface ProductProps {
     id: string
+    title: string
     price: number
+    cover_url: string
+    currency: string
     qty: number
 }
 
-export interface BookProps extends Product {
-    title: string
+export interface BookProps extends ProductProps {
     author: string
-    cover_url: string
     pages: number
-    currency: string
 }
 
 export interface AccountState {
-    products: Array<Product>
+    products: Array<ProductProps>
 }
 
 export interface RootState {
