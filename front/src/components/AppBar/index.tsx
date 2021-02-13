@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import AppBar from "@material-ui/core/AppBar";
 import {
@@ -11,22 +11,24 @@ import {
 
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
+import { useSelector } from "react-redux";
+import { GetBasketLength } from "../../selectors";
+
 import classes from "./style.module.css";
 
 const AppBarComp: FC = () => {
+  const basketLength = useSelector(GetBasketLength);
+
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar>
         <Container className={classes.Container}>
           <Typography variant="h6">Zadanie rekrutacyjne</Typography>
-              <IconButton
-                aria-label="show 11 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={11} color="secondary">
-                  <ShoppingBasketIcon />
-                </Badge>
-              </IconButton>
+          <IconButton color="inherit">
+            <Badge badgeContent={basketLength.toString()} color="secondary">
+              <ShoppingBasketIcon />
+            </Badge>
+          </IconButton>
         </Container>
       </Toolbar>
     </AppBar>

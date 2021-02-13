@@ -1,11 +1,41 @@
-import { CardContent, Grid, Typography } from "@material-ui/core";
+import React, { FC } from "react";
+
+import {
+  CardActions,
+  CardContent,
+  Grid,
+  IconButton,
+  Typography,
+} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import { Paper } from "@material-ui/core";
-import React, { FC } from "react";
 import { ProductProps } from "../../types";
 
-const Item: FC<ProductProps> = ({ title, price, currency, cover_url }) => {
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../../slices/accountSlice";
+
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+
+const Item: FC<ProductProps> = ({
+  title,
+  price,
+  currency,
+  cover_url,
+  ...props
+}) => {
+  const dispatch = useDispatch();
+  const addToBasketHandler = () => {
+    const newProduct: ProductProps = {
+      title: title,
+      price: price,
+      currency: currency,
+      cover_url: cover_url,
+      ...props,
+    };
+
+    dispatch(addToBasket(newProduct));
+  };
   return (
     <Grid item xs={4}>
       <Paper style={{ position: "relative" }}>
@@ -28,7 +58,7 @@ const Item: FC<ProductProps> = ({ title, price, currency, cover_url }) => {
             style={{
               padding: 0,
               margin: 0,
-              textAlign: 'center',
+              textAlign: "center",
               fontWeight: "bold",
               color: "#FFF",
               textShadow: "3px 3px 3px black",
@@ -55,6 +85,11 @@ const Item: FC<ProductProps> = ({ title, price, currency, cover_url }) => {
             species, ranging across all continents except Antarctica
           </Typography>
         </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to basket" onClick={() => addToBasketHandler()}>
+            <AddCircleIcon />
+          </IconButton>
+        </CardActions>
       </Paper>
     </Grid>
   );
