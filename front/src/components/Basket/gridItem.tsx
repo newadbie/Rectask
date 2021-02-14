@@ -9,7 +9,7 @@ import { Grid, IconButton } from "@material-ui/core";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import { Paper } from "@material-ui/core";
 
-import classes from './style.module.css';
+import classes from "./style.module.css";
 
 const GridItem: FC<ProductProps> = ({
   id,
@@ -21,10 +21,17 @@ const GridItem: FC<ProductProps> = ({
 }) => {
   const dispatch = useDispatch();
   return (
-    <Paper style={{ height: "300px", overflow: "hidden", padding: "10px", margin: '10px' }}>
-      <Grid container style={{height: '100%', overflow: 'hidden'}}>
+    <Paper
+      style={{
+        height: "300px",
+        overflow: "hidden",
+        padding: "10px",
+        margin: "10px",
+      }}
+    >
+      <Grid container style={{ height: "100%", overflow: "hidden" }}>
         <Grid item xs={4}>
-          <img src={cover_url} />
+          <img src={cover_url} alt={title} />
         </Grid>
         <Grid item xs={4} className={classes.CenteredItem}>
           <p>{title}</p>

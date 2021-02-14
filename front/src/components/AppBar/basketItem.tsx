@@ -23,7 +23,7 @@ const BasketItem: FC<ProductProps> = ({
   return (
     <div className={classes.Item}>
       <div className={classes.Img}>
-        <img src={cover_url} />
+        <img src={cover_url} alt={title} />
       </div>
       <div className={classes.Title}>{title}</div>
       <div className={classes.Price}>

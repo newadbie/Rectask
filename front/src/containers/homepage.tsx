@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
 
-import { BookProps, ProductProps } from "../types";
+import { BookProps } from "../types";
 
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -26,7 +26,7 @@ const Homepage: FC = () => {
 
     useEffect(() => {
       refetch();
-    }, [])
+    }, [refetch])
 
   useEffect(() => {
     if (data) {

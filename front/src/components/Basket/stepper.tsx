@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { GetActiveStep, GetStepsContent } from "../../selectors";
-import { goNext, goBack } from "../../slices/basketSlice";
+import { goBack } from "../../slices/basketSlice";
 
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -19,11 +19,9 @@ const StepperComponent: FC = () => {
     <div>
       <Stepper activeStep={activeStep}>
         {steps.map((step, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode } = {};
           return (
             <Step key={index}>
-              <StepLabel {...labelProps}>{step}</StepLabel>
+              <StepLabel >{step}</StepLabel>
             </Step>
           );
         })}
