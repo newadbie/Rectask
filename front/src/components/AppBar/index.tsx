@@ -67,7 +67,7 @@ const AppBarComp: FC = () => {
             </IconButton>
             <Menu
               id="menu-appbar"
-              style={{ maxHeight: "40vh" }}
+              style={{ maxHeight: "60vh" }}
               getContentAnchorEl={null}
               anchorEl={anchorEl}
               anchorOrigin={{

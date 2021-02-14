@@ -26,11 +26,13 @@ const BasketItems: FC = () => {
       {products.map((product) => (
         <BasketItem {...product} />
       ))}
-      <Link to="/basket">
-        <Button color="primary" variant="contained">
-          Checkout
-        </Button>
-      </Link>
+      <div className={classes.CheckoutButton}>
+        <Link to="/basket">
+          <Button color="primary" variant="contained">
+            Checkout
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };
