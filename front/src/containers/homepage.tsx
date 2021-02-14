@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import Item from "../components/Shop/item";
 
 const Homepage: FC = () => {
-  const [loadedProducts, setProducts] = useState<Array<ProductProps>>([]);
+  const [loadedProducts, setProducts] = useState<Array<BookProps>>([]);
 
   const { isLoading, error, data } = useQuery("fetchBooks", () => {
     return axios.get("http://localhost:3001/api/book");
@@ -28,7 +28,11 @@ const Homepage: FC = () => {
     <Container style={{ padding: "20px 0" }}>
       <Grid container spacing={6}>
         {loadedProducts.map((product) => (
-          <Item {...product} key={product.id} />
+          <Item {...product} key={product.id}>
+            <b>{product.author}</b>
+            <br />
+            <b>Liczba stron: </b> {product.pages}
+            </Item>
         ))}
       </Grid>
     </Container>

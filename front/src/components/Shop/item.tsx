@@ -84,8 +84,12 @@ const Item: FC<ProductProps> = ({
           <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
-            {children}
           </Typography>
+          {children ? (
+            <Typography variant="body2" color="textSecondary" component="p" style={{marginTop: '10px'}}>
+              {children}
+            </Typography>
+          ) : null}
         </CardContent>
         <CardActions disableSpacing>
           <IconButton

@@ -21,9 +21,24 @@ const accountSlice = createSlice({
       }
       state.productsInBasket = state.productsInBasket + 1;
     },
+    removeFromBasket: (state, { payload }: PayloadAction<string>) => {
+      const productIndex = state.products.findIndex(
+        (product) => product.id === payload
+      );
+      if (productIndex !== -1) {
+        const product = state.products[productIndex];
+
+        if (product.qty === 1) {
+          state.products = state.products.filter((p) => p.id !== product.id);
+        } else {
+          state.products[productIndex].qty--;
+        }
+        state.productsInBasket--;
+      }
+    },
   },
 });
 
-export const { addToBasket } = accountSlice.actions;
+export const { addToBasket, removeFromBasket } = accountSlice.actions;
 
 export default accountSlice.reducer;

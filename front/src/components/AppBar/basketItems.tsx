@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { GetProducts } from "../../selectors";
 
 import classes from "./basket.module.css";
+import { Button } from "@material-ui/core";
 
 const BasketItems: FC = () => {
   const products = useSelector(GetProducts);
@@ -24,6 +25,9 @@ const BasketItems: FC = () => {
       {products.map((product) => (
         <BasketItem {...product} />
       ))}
+      <Button color="primary" variant="contained">
+          Checkout
+      </Button>
     </div>
   );
 };

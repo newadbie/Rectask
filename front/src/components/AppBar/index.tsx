@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 
 import AppBar from "@material-ui/core/AppBar";
 import {
@@ -24,6 +24,12 @@ const AppBarComp: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  useEffect(() => {
+    if (basketLength === 0) {
+      setAnchorEl(null);
+    }
+  }, [basketLength])
+
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (basketLength > 0) {
       setAnchorEl(event.currentTarget);
@@ -47,6 +53,7 @@ const AppBarComp: FC = () => {
             </IconButton>
             <Menu
               id="menu-appbar"
+              style={{maxHeight: '40vh'}}
               getContentAnchorEl={null}
               anchorEl={anchorEl}
               anchorOrigin={{
