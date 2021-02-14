@@ -45,7 +45,7 @@ const AppBarComp: FC = () => {
     <AppBar position="sticky">
       <Toolbar>
         <Container className={classes.Container}>
-          <Typography variant="h6">Zadanie rekrutacyjne</Typography>
+          <Typography variant="h6">Recruitment task</Typography>
           <div
             style={{
               display: "flex",

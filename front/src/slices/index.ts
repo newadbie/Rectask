@@ -1,10 +1,10 @@
 import { combineReducers, Reducer } from "redux";
 import { RootState } from "../types";
 
-import accountState from "./accountSlice";
+import basketState from "./basketSlice";
 
 const rootReducer: Reducer<RootState> = combineReducers<RootState>({
-  accountState: accountState,
+  basketState: basketState,
 });
 
 export default rootReducer

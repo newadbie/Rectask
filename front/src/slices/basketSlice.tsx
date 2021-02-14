@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AccountState, ProductProps } from "../types";
+import { BasketState, ProductProps } from "../types";
 
-export const initialState: AccountState = {
+export const initialState: BasketState = {
   productsInBasket: 0,
   products: [],
 };
 
-const accountSlice = createSlice({
+const basketSlice = createSlice({
   name: "account",
   initialState,
   reducers: {
@@ -39,6 +39,6 @@ const accountSlice = createSlice({
   },
 });
 
-export const { addToBasket, removeFromBasket } = accountSlice.actions;
+export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
-export default accountSlice.reducer;
+export default basketSlice.reducer;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { useDispatch } from "react-redux";
-import { removeFromBasket } from "../../slices/accountSlice";
+import { removeFromBasket } from "../../slices/basketSlice";
 
 import { ProductProps } from "../../types";
 

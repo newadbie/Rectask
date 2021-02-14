@@ -13,7 +13,7 @@ import { Paper } from "@material-ui/core";
 import { ProductProps } from "../../types";
 
 import { useDispatch } from "react-redux";
-import { addToBasket } from "../../slices/accountSlice";
+import { addToBasket } from "../../slices/basketSlice";
 
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 

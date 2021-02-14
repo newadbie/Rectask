@@ -12,11 +12,11 @@ export interface BookProps extends ProductProps {
   pages: number;
 }
 
-export interface AccountState {
+export interface BasketState {
   productsInBasket: number;
   products: Array<ProductProps>;
 }
 
 export interface RootState {
-  accountState: AccountState;
+  basketState: BasketState;
 }
