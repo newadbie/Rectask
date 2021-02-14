@@ -30,13 +30,20 @@ export interface BookProps extends ProductProps {
   pages: number;
 }
 
+export type ErrorProps = {
+  title: string;
+  message: string;
+};
+
 export interface BasketState {
   productsInBasket: number;
   products: Array<ProductProps>;
   steps: Array<string>;
   activeStep: number;
   payData: PayData;
-  isOrderedSuccessfully: boolean
+  isLoading: boolean;
+  error: undefined | ErrorProps 
+  isFinalized: boolean
 }
 
 export interface RootState {

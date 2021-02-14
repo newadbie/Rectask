@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 
 import { useSelector, useDispatch } from "react-redux";
 import { GetPayData, GetProducts } from "../../selectors";
-import { confirmOrder } from "../../slices/basketSlice";
+import { startLoading, stopLoading, setError, clearError, goNext, finalize } from "../../slices/basketSlice";
 
 import axios from "axios";
 
@@ -21,16 +21,26 @@ const ConfirmForm: FC = () => {
     (newOrder: OrderAPIProps) =>
       axios.post("http://localhost:3001/api/order", newOrder),
     {
-      onSuccess: () => {
-        dispatch(confirmOrder());
+      onError: () => {
+        dispatch(
+          setError({
+            title: "Post error",
+            message:
+              "Something went wrong, service could not pass data to the API!",
+          })
+        );
       },
-      onError: (error: any) => {
-        console.log("error");
-      }
+      onSettled: () => {
+        dispatch(stopLoading());
+        dispatch(goNext());
+        dispatch(finalize());
+      },
     }
   );
 
   const submit = () => {
+    dispatch(startLoading());
+    dispatch(clearError());
     const order: OrderAPIProps = {
       order: products.map((product) => ({
         id: product.id,

@@ -14,7 +14,11 @@ import {
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 import { useSelector, useDispatch } from "react-redux";
-import { resetStepper } from "../../slices/basketSlice";
+import {
+  resetStepper,
+  clearFinalize,
+  clearError,
+} from "../../slices/basketSlice";
 import { GetBasketLength } from "../../selectors";
 
 import classes from "./style.module.css";
@@ -58,6 +62,7 @@ const AppBarComp: FC = () => {
           >
             <Typography variant="caption">
               <Link
+                onClick={() => dispatch(clearFinalize())}
                 to="/"
                 style={{
                   color: "#FFF",

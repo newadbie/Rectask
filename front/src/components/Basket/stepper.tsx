@@ -27,7 +27,7 @@ const StepperComponent: FC = () => {
         })}
       </Stepper>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        {activeStep !== 0 ? (
+        {activeStep !== 0 && activeStep !== steps.length - 1 ? (
           <Button
             style={{ margin: "10px" }}
             variant="contained"

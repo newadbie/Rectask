@@ -1,18 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BasketState, ProductProps, PayData } from "../types";
+import { BasketState, ProductProps, PayData, ErrorProps } from "../types";
 
 export const initialState: BasketState = {
   productsInBasket: 0,
   products: [],
-  steps: ["Check your order", "Set your address", "Finalize your order"],
-  activeStep: 0,
+  steps: [
+    "Check your order",
+    "Set your address",
+    "Confirm your order",
+    "Finalize",
+  ],
+  activeStep: 3,
   payData: {
     name: "",
     surname: "",
     zip_code: "",
     address: "",
   },
-  isOrderedSuccessfully: false
+  error: undefined,
+  isLoading: false,
+  isFinalized: false,
 };
 
 const basketSlice = createSlice({
@@ -29,6 +36,24 @@ const basketSlice = createSlice({
         state.products[productIndex].qty += 1;
       }
       state.productsInBasket = state.productsInBasket + 1;
+    },
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    stopLoading: (state) => {
+      state.isLoading = false;
+    },
+    finalize: (state) => {
+      state.isFinalized = true;
+    },
+    clearFinalize: (state) => {
+      state.isFinalized = false;
+    },
+    setError: (state, { payload }: PayloadAction<ErrorProps>) => {
+      state.error = payload;
+    },
+    clearError: (state) => {
+      state.error = undefined;
     },
     removeFromBasket: (state, { payload }: PayloadAction<number>) => {
       const productIndex = state.products.findIndex(
@@ -57,14 +82,9 @@ const basketSlice = createSlice({
       }
       state.payData = payload;
     },
-    confirmOrder: (state) => {
-      state.isOrderedSuccessfully = true;
-    },
     resetBasket: (state) => {
-      state.isOrderedSuccessfully = false;
-      state.productsInBasket= 0;
+      state.productsInBasket = 0;
       state.products = [];
-      state.activeStep = 0;
       state.payData = {
         name: "",
         surname: "",
@@ -102,7 +122,12 @@ export const {
   setPayData,
   resetStepper,
   resetBasket,
-  confirmOrder
+  startLoading,
+  stopLoading,
+  setError,
+  clearError,
+  finalize,
+  clearFinalize
 } = basketSlice.actions;
 
 export default basketSlice.reducer;
