@@ -22,6 +22,7 @@ const Item: FC<ProductProps> = ({
   price,
   currency,
   cover_url,
+  children,
   ...props
 }) => {
   const dispatch = useDispatch();
@@ -83,10 +84,14 @@ const Item: FC<ProductProps> = ({
           <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
+            {children}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to basket" onClick={() => addToBasketHandler()}>
+          <IconButton
+            aria-label="add to basket"
+            onClick={() => addToBasketHandler()}
+          >
             <AddCircleIcon />
           </IconButton>
         </CardActions>

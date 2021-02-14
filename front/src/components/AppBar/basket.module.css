@@ -1,0 +1,56 @@
+.Basket {
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Item {
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: row;
+    padding:10px;
+    width:100%;
+}
+
+.Img {
+    width:30%;
+    height:100px;
+    overflow: hidden;
+}
+
+.Title {
+    width:30%;
+}
+
+.Price {
+    width:20%;
+}
+
+.Qty {
+    width:10%;
+}
+
+.Action {
+    width:10%;
+}
+
+.Img img {
+    overflow: hidden;
+    min-width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.FirstRow {
+    display:flex;
+    width:100%;
+    text-align: center;
+}
+
+.FirstRow .Img {
+    height:auto;
+}

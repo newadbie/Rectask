@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { Container, Grid } from "@material-ui/core";
 
-import { ProductProps } from "../types";
+import { BookProps, ProductProps } from "../types";
 
 import axios from "axios";
 import { useQuery } from "react-query";
