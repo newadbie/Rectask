@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BasketState, ProductProps } from "../types";
+import { BasketState, ProductProps, PayData } from "../types";
 
 export const initialState: BasketState = {
   productsInBasket: 0,
   products: [],
   steps: ["Check your order", "Set your address", "Finalize your order"],
-  activeStep: 0
+  activeStep: 0,
+  payData: {
+    name: "",
+    surname: "",
+    zip_code: "",
+    address: "",
+  },
 };
 
 const basketSlice = createSlice({
@@ -38,6 +44,18 @@ const basketSlice = createSlice({
         state.productsInBasket--;
       }
     },
+    setPayData: (state, { payload }: PayloadAction<PayData>) => {
+      console.log(payload);
+      if (
+        payload.address === "" ||
+        payload.name === "" ||
+        payload.surname === "" ||
+        payload.zip_code === ""
+      ) {
+        throw new Error("Incorrect paydata!");
+      }
+      state.payData = payload;
+    },
     goNext: (state) => {
       if (state.activeStep + 1 < state.steps.length) {
         state.activeStep++;
@@ -47,11 +65,16 @@ const basketSlice = createSlice({
       if (state.activeStep - 1 >= 0) {
         state.activeStep--;
       }
-    }
-
+    },
   },
 });
 
-export const { addToBasket, removeFromBasket, goBack, goNext } = basketSlice.actions;
+export const {
+  addToBasket,
+  removeFromBasket,
+  goBack,
+  goNext,
+  setPayData
+} = basketSlice.actions;
 
 export default basketSlice.reducer;

@@ -4,3 +4,18 @@
     flex-direction: row;
     align-items: center;
 }
+
+.CheckoutButton {
+    width:100%;
+    background-color: #FFF;
+    position: sticky;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom:0;
+}
+
+.CheckoutButton button {
+    margin:0 auto;
+}

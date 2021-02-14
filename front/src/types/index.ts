@@ -1,3 +1,10 @@
+export interface PayData {
+  name: string,
+  surname: string,
+  address: string,
+  zip_code: string
+}
+
 export interface ProductProps {
   id: string;
   title: string;
@@ -17,6 +24,7 @@ export interface BasketState {
   products: Array<ProductProps>;
   steps: Array<string>
   activeStep: number
+  payData: PayData
 }
 
 export interface RootState {

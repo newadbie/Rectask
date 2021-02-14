@@ -23,7 +23,6 @@ const Basket: FC = () => {
           Basket
         </Typography>
       </header>
-
       <main>
         {products.length === 0 ? (
           <Typography variant="h4" style={{ textAlign: "center" }}>

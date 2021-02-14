@@ -36,17 +36,7 @@ const StepperComponent: FC = () => {
             color="primary"
             onClick={() => dispatch(goBack())}
           >
-            Back
-          </Button>
-        ) : null}
-        {activeStep !== steps.length - 1 ? (
-          <Button
-            style={{ margin: "10px" }}
-            variant="contained"
-            color="primary"
-            onClick={() => dispatch(goNext())}
-          >
-            Next
+            Go Back
           </Button>
         ) : null}
       </div>

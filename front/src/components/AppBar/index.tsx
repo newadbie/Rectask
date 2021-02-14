@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import {
   Badge,
+  Button,
   Container,
   IconButton,
   Menu,
@@ -86,7 +87,18 @@ const AppBarComp: FC = () => {
               open={open}
               onClose={handleClose}
             >
-              <BasketItems closeBasketMenu={() => setAnchorEl(null)}/>
+              <BasketItems />
+              <div className={classes.CheckoutButton}>
+                <Link to="/basket">
+                  <Button
+                    onClick={handleClose}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Checkout
+                  </Button>
+                </Link>
+              </div>
             </Menu>
           </div>
         </Container>
