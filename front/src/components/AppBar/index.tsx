@@ -46,7 +46,13 @@ const AppBarComp: FC = () => {
       <Toolbar>
         <Container className={classes.Container}>
           <Typography variant="h6">Zadanie rekrutacyjne</Typography>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Typography variant="caption">
               <Link
                 to="/"
@@ -59,7 +65,6 @@ const AppBarComp: FC = () => {
                 Shop
               </Link>
             </Typography>
-
             <IconButton color="inherit" onClick={handleMenu}>
               <Badge badgeContent={basketLength.toString()} color="secondary">
                 <ShoppingBasketIcon />
@@ -81,7 +86,7 @@ const AppBarComp: FC = () => {
               open={open}
               onClose={handleClose}
             >
-              <BasketItems />
+              <BasketItems closeBasketMenu={() => setAnchorEl(null)}/>
             </Menu>
           </div>
         </Container>

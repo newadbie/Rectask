@@ -9,7 +9,11 @@ import classes from "./basket.module.css";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const BasketItems: FC = () => {
+type Props = {
+  closeBasketMenu: () => void;
+};
+
+const BasketItems: FC<Props> = ({ closeBasketMenu }) => {
   const products = useSelector(GetProducts);
 
   return (
@@ -28,7 +32,11 @@ const BasketItems: FC = () => {
       ))}
       <div className={classes.CheckoutButton}>
         <Link to="/basket">
-          <Button color="primary" variant="contained">
+          <Button
+            onClick={() => closeBasketMenu()}
+            color="primary"
+            variant="contained"
+          >
             Checkout
           </Button>
         </Link>
