@@ -6,9 +6,9 @@
 }
 
 .SubmitButton {
-    margin: 20px auto;
-    display: block;
-    font-size:26px;
+    margin: 20px auto!important;
+    display: block!important;
+    font-size:26px!important;
 }
 
 .Typography {

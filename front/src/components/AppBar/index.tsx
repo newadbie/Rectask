@@ -14,7 +14,7 @@ import {
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setStep } from "../../slices/basketSlice";
+import { resetStepper } from "../../slices/basketSlice";
 import { GetBasketLength } from "../../selectors";
 
 import classes from "./style.module.css";
@@ -91,7 +91,7 @@ const AppBarComp: FC = () => {
             >
               <BasketItems />
               <div className={classes.CheckoutButton}>
-                <Link to="/basket" onClick={() => dispatch(setStep(0))}>
+                <Link to="/basket" onClick={() => dispatch(resetStepper())}>
                   <Button
                     onClick={handleClose}
                     color="primary"

@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { GetPayData } from "../../selectors";
 import { goNext, setPayData } from "../../slices/basketSlice";
 
 import { PayData } from "../../types";
@@ -25,6 +26,7 @@ const validationSchema = yup.object({
 
 const Form: FC = () => {
   const dispatch = useDispatch();
+  const payData = useSelector(GetPayData);
 
   const submitHandler = (valuesState: any) => {
     const validData: PayData = {
@@ -39,14 +41,21 @@ const Form: FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      surname: "",
-      address: "",
-      zip_code: "",
+      name: payData.name,
+      surname: payData.surname,
+      address: payData.address,
+      zip_code: payData.zip_code,
     },
     validationSchema: validationSchema,
     onSubmit: submitHandler,
   });
+
+  useEffect(() => {
+    formik.values.name = payData.name;
+    formik.values.surname = payData.surname;
+    formik.values.address = payData.address;
+    formik.values.zip_code = payData.zip_code;
+  }, [payData]);
 
   return (
     <section>

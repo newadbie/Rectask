@@ -21,7 +21,6 @@ const ConfirmForm: FC = () => {
       city: payData.address,
       zip_code: payData.zip_code,
     };
-    console.log(order);
   };
 
   return (
@@ -34,8 +33,8 @@ const ConfirmForm: FC = () => {
       <main style={{ padding: "30px 0" }}>
         <Grid container>
           {Object.entries(payData).map((entry) => (
-            <>
-              <Grid item xs={6}>
+            <div key={entry[0]} style={{display:'flex',width:'100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+              <Grid item xs={6} >
                 <Typography
                   variant="body1"
                   align="right"
@@ -45,22 +44,24 @@ const ConfirmForm: FC = () => {
                   {entry[0]}:
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={6} >
                 <Typography variant="body1" className={`${classes.Typography}`}>
                   {entry[1]}
                 </Typography>
               </Grid>
-            </>
+            </div>
           ))}
         </Grid>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.SubmitButton}
-          onClick={() => submit()}
-        >
-          Everything is correct! Order
-        </Button>
+        <div style={{width:'100%'}} >
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.SubmitButton}
+            onClick={() => submit()}
+          >
+            Everything is correct! Order
+          </Button>
+        </div>
       </main>
     </div>
   );
