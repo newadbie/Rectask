@@ -4,3 +4,17 @@
     align-items: center;
     height:100%;
 }
+
+.SubmitButton {
+    margin: 20px auto;
+    display: block;
+    font-size:26px;
+}
+
+.Typography {
+    padding:5px;
+}
+
+.UpperFirstLetter::first-letter {
+    text-transform: uppercase;
+}

@@ -6,6 +6,7 @@ import { GetActiveStep, GetProducts } from "../selectors";
 import { Container, Typography } from "@material-ui/core";
 
 import BasketForm from "../components/Basket/form";
+import ConfirmForm from "../components/Basket/confirmForm";
 import BasketGrid from "../components/Basket/basketGrid";
 import Stepper from "../components/Basket/stepper";
 
@@ -32,6 +33,7 @@ const Basket: FC = () => {
           <>
             {activeStep === 0 ? <BasketGrid products={products} /> : null}
             {activeStep === 1 ? <BasketForm /> : null}
+            {activeStep === 2 ? <ConfirmForm /> : null}
             <Stepper />
           </>
         )}
