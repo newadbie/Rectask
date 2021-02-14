@@ -18,6 +18,7 @@ import { GetBasketLength } from "../../selectors";
 
 import classes from "./style.module.css";
 import BasketItems from "./basketItems";
+import { Link } from "react-router-dom";
 
 const AppBarComp: FC = () => {
   const basketLength = useSelector(GetBasketLength);
@@ -28,7 +29,7 @@ const AppBarComp: FC = () => {
     if (basketLength === 0) {
       setAnchorEl(null);
     }
-  }, [basketLength])
+  }, [basketLength]);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (basketLength > 0) {
@@ -45,7 +46,20 @@ const AppBarComp: FC = () => {
       <Toolbar>
         <Container className={classes.Container}>
           <Typography variant="h6">Zadanie rekrutacyjne</Typography>
-          <div>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Typography variant="caption">
+              <Link
+                to="/"
+                style={{
+                  color: "#FFF",
+                  textDecoration: "none",
+                  fontSize: "20px",
+                }}
+              >
+                Shop
+              </Link>
+            </Typography>
+
             <IconButton color="inherit" onClick={handleMenu}>
               <Badge badgeContent={basketLength.toString()} color="secondary">
                 <ShoppingBasketIcon />
@@ -53,7 +67,7 @@ const AppBarComp: FC = () => {
             </IconButton>
             <Menu
               id="menu-appbar"
-              style={{maxHeight: '40vh'}}
+              style={{ maxHeight: "40vh" }}
               getContentAnchorEl={null}
               anchorEl={anchorEl}
               anchorOrigin={{

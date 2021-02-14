@@ -7,6 +7,7 @@ import { GetProducts } from "../../selectors";
 
 import classes from "./basket.module.css";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const BasketItems: FC = () => {
   const products = useSelector(GetProducts);
@@ -25,9 +26,11 @@ const BasketItems: FC = () => {
       {products.map((product) => (
         <BasketItem {...product} />
       ))}
-      <Button color="primary" variant="contained">
+      <Link to="/basket">
+        <Button color="primary" variant="contained">
           Checkout
-      </Button>
+        </Button>
+      </Link>
     </div>
   );
 };
