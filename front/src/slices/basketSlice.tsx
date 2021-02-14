@@ -56,6 +56,11 @@ const basketSlice = createSlice({
       }
       state.payData = payload;
     },
+    setStep: (state, { payload }: PayloadAction<number>) => {
+      if (payload >= 0 && payload < state.steps.length - 1) {
+        state.activeStep = payload;
+      }
+    },
     goNext: (state) => {
       if (state.activeStep + 1 < state.steps.length) {
         state.activeStep++;
@@ -74,7 +79,8 @@ export const {
   removeFromBasket,
   goBack,
   goNext,
-  setPayData
+  setPayData,
+  setStep,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

@@ -10,7 +10,7 @@ const App: FC = () => {
     <Router>
       <AppBarComp />
       <Switch>
-        <Route path="/basket" exact>
+        <Route path="/basket" onEnter={() => console.log("AUU")} exact >
           <Basket />
         </Route>
         <Route path="/" exact>

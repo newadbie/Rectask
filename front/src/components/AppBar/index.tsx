@@ -14,7 +14,8 @@ import {
 
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setStep } from "../../slices/basketSlice";
 import { GetBasketLength } from "../../selectors";
 
 import classes from "./style.module.css";
@@ -25,6 +26,8 @@ const AppBarComp: FC = () => {
   const basketLength = useSelector(GetBasketLength);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (basketLength === 0) {
@@ -89,7 +92,7 @@ const AppBarComp: FC = () => {
             >
               <BasketItems />
               <div className={classes.CheckoutButton}>
-                <Link to="/basket">
+                <Link to="/basket" onClick={() => dispatch(setStep(0))}>
                   <Button
                     onClick={handleClose}
                     color="primary"
