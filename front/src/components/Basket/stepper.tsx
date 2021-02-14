@@ -1,28 +1,23 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { GetActiveStep, GetStepsContent } from "../../selectors";
+import { goNext, goBack } from "../../slices/basketSlice";
+
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import { Button } from "@material-ui/core";
 
-interface Props {
-  steps: Array<string>;
-  currentStep: number;
-  goNext: () => void;
-  goBack: () => void;
-}
+const StepperComponent: FC = () => {
+  const dispatch = useDispatch();
 
-const StepperComponent: FC<Props> = ({
-  steps,
-  currentStep,
-  goNext,
-  goBack,
-}) => {
-  if (currentStep > steps.length - 1) {
-    throw Error("Incorrect step!");
-  }
+  const activeStep = useSelector(GetActiveStep);
+  const steps = useSelector(GetStepsContent);
+
   return (
     <div>
-      <Stepper activeStep={currentStep}>
+      <Stepper activeStep={activeStep}>
         {steps.map((step, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: { optional?: React.ReactNode } = {};
@@ -33,14 +28,24 @@ const StepperComponent: FC<Props> = ({
           );
         })}
       </Stepper>
-      <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-        {currentStep !== 0 ? (
-          <Button style={{margin: '10px'}} variant="contained" color="primary" onClick={() => goBack()}>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        {activeStep !== 0 ? (
+          <Button
+            style={{ margin: "10px" }}
+            variant="contained"
+            color="primary"
+            onClick={() => dispatch(goBack())}
+          >
             Back
           </Button>
         ) : null}
-        {currentStep !== steps.length - 1 ? (
-          <Button style={{margin: '10px'}} variant="contained" color="primary" onClick={() => goNext()}>
+        {activeStep !== steps.length - 1 ? (
+          <Button
+            style={{ margin: "10px" }}
+            variant="contained"
+            color="primary"
+            onClick={() => dispatch(goNext())}
+          >
             Next
           </Button>
         ) : null}

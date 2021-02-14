@@ -4,6 +4,8 @@ import { BasketState, ProductProps } from "../types";
 export const initialState: BasketState = {
   productsInBasket: 0,
   products: [],
+  steps: ["Check your order", "Set your address", "Finalize your order"],
+  activeStep: 0
 };
 
 const basketSlice = createSlice({
@@ -36,9 +38,20 @@ const basketSlice = createSlice({
         state.productsInBasket--;
       }
     },
+    goNext: (state) => {
+      if (state.activeStep + 1 < state.steps.length) {
+        state.activeStep++;
+      }
+    },
+    goBack: (state) => {
+      if (state.activeStep - 1 >= 0) {
+        state.activeStep--;
+      }
+    }
+
   },
 });
 
-export const { addToBasket, removeFromBasket } = basketSlice.actions;
+export const { addToBasket, removeFromBasket, goBack, goNext } = basketSlice.actions;
 
 export default basketSlice.reducer;

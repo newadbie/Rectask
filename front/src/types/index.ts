@@ -15,6 +15,8 @@ export interface BookProps extends ProductProps {
 export interface BasketState {
   productsInBasket: number;
   products: Array<ProductProps>;
+  steps: Array<string>
+  activeStep: number
 }
 
 export interface RootState {

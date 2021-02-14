@@ -1,33 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { useSelector } from "react-redux";
-import { GetProducts } from "../selectors";
+import { GetActiveStep, GetProducts } from "../selectors";
 
-import BasketGrid from "../components/Basket/basketGrid";
 import { Container, Typography } from "@material-ui/core";
+
+import BasketForm from "../components/Basket/form";
+import BasketGrid from "../components/Basket/basketGrid";
 import Stepper from "../components/Basket/stepper";
 
 const Basket: FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(0);
-  const [steps, setSteps] = useState<Array<string>>([
-    "Check your order",
-    "Set your address",
-    "Finalize your order",
-  ]);
-
   const products = useSelector(GetProducts);
-
-  const goNextHandler = () => {
-    if (activeStep + 1 < steps.length) {
-      setActiveStep(activeStep + 1);
-    }
-  };
-
-  const goBackHandler = () => {
-    if (activeStep - 1 < steps.length - 1) {
-      setActiveStep(activeStep - 1);
-    }
-  };
+  const activeStep = useSelector(GetActiveStep);
 
   return (
     <Container>
@@ -48,12 +32,8 @@ const Basket: FC = () => {
         ) : (
           <>
             {activeStep === 0 ? <BasketGrid products={products} /> : null}
-            <Stepper
-              currentStep={activeStep}
-              steps={steps}
-              goNext={goNextHandler}
-              goBack={goBackHandler}
-            />
+            {activeStep === 1 ? <BasketForm /> : null}
+            <Stepper />
           </>
         )}
       </main>
