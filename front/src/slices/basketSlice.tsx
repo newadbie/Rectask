@@ -12,6 +12,7 @@ export const initialState: BasketState = {
     zip_code: "",
     address: "",
   },
+  isOrderedSuccessfully: false
 };
 
 const basketSlice = createSlice({
@@ -29,9 +30,9 @@ const basketSlice = createSlice({
       }
       state.productsInBasket = state.productsInBasket + 1;
     },
-    removeFromBasket: (state, { payload }: PayloadAction<string>) => {
+    removeFromBasket: (state, { payload }: PayloadAction<number>) => {
       const productIndex = state.products.findIndex(
-        (product) => product.id === payload
+        (product) => product.id.toString() === payload.toString()
       );
       if (productIndex !== -1) {
         const product = state.products[productIndex];
@@ -55,6 +56,21 @@ const basketSlice = createSlice({
         throw new Error("Incorrect paydata!");
       }
       state.payData = payload;
+    },
+    confirmOrder: (state) => {
+      state.isOrderedSuccessfully = true;
+    },
+    resetBasket: (state) => {
+      state.isOrderedSuccessfully = false;
+      state.productsInBasket= 0;
+      state.products = [];
+      state.activeStep = 0;
+      state.payData = {
+        name: "",
+        surname: "",
+        zip_code: "",
+        address: "",
+      };
     },
     resetStepper: (state) => {
       state.activeStep = 0;
@@ -85,6 +101,8 @@ export const {
   goNext,
   setPayData,
   resetStepper,
+  resetBasket,
+  confirmOrder
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

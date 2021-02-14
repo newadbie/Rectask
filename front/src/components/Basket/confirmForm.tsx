@@ -1,17 +1,37 @@
 import { FC } from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
+import { useMutation } from "react-query";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GetPayData, GetProducts } from "../../selectors";
+import { confirmOrder } from "../../slices/basketSlice";
+
+import axios from "axios";
+
+import { OrderAPIProps } from "../../types";
 
 import classes from "./style.module.css";
 
 const ConfirmForm: FC = () => {
   const payData = useSelector(GetPayData);
   const products = useSelector(GetProducts);
+  const dispatch = useDispatch();
+
+  const submitOrderMutation = useMutation(
+    (newOrder: OrderAPIProps) =>
+      axios.post("http://localhost:3001/api/order", newOrder),
+    {
+      onSuccess: () => {
+        dispatch(confirmOrder());
+      },
+      onError: (error: any) => {
+        console.log("error");
+      }
+    }
+  );
 
   const submit = () => {
-    const order = {
+    const order: OrderAPIProps = {
       order: products.map((product) => ({
         id: product.id,
         quantity: product.qty,
@@ -19,8 +39,9 @@ const ConfirmForm: FC = () => {
       first_name: payData.name,
       last_name: payData.surname,
       city: payData.address,
-      zip_code: payData.zip_code,
+      zip_code: payData.zip_code + "23",
     };
+    submitOrderMutation.mutate(order);
   };
 
   return (
@@ -33,8 +54,17 @@ const ConfirmForm: FC = () => {
       <main style={{ padding: "30px 0" }}>
         <Grid container>
           {Object.entries(payData).map((entry) => (
-            <div key={entry[0]} style={{display:'flex',width:'100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-              <Grid item xs={6} >
+            <div
+              key={entry[0]}
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+              }}
+            >
+              <Grid item xs={6}>
                 <Typography
                   variant="body1"
                   align="right"
@@ -44,7 +74,7 @@ const ConfirmForm: FC = () => {
                   {entry[0]}:
                 </Typography>
               </Grid>
-              <Grid item xs={6} >
+              <Grid item xs={6}>
                 <Typography variant="body1" className={`${classes.Typography}`}>
                   {entry[1]}
                 </Typography>
@@ -52,7 +82,7 @@ const ConfirmForm: FC = () => {
             </div>
           ))}
         </Grid>
-        <div style={{width:'100%'}} >
+        <div style={{ width: "100%" }}>
           <Button
             variant="contained"
             color="primary"
