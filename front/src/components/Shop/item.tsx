@@ -98,6 +98,7 @@ const Item: FC<ProductProps> = ({
           >
             <AddCircleIcon />
           </IconButton>
+          <Typography>Add to the basket</Typography>
         </CardActions>
       </Paper>
     </Grid>

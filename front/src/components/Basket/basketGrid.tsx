@@ -1,16 +1,20 @@
 import { FC } from "react";
 
-import { useSelector } from "react-redux";
-import { GetProducts } from "../../selectors";
-
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import GridItem from "./gridItem";
 
-import classes from './style.module.css';
+import { ProductProps } from "../../types";
 
-const BasketGrid: FC = () => {
-  const products = useSelector(GetProducts);
+import classes from "./style.module.css";
 
+interface Props {
+  products: Array<ProductProps>;
+}
+
+const BasketGrid: FC<Props> = ({ products }) => {
+  const totalPrice = products
+    .map((product) => product.price * product.qty)
+    .reduce((prev, next) => prev + next);
   const gridHeader = (
     <Grid container>
       <Grid item xs={4} className={classes.CenteredItem}>
@@ -32,12 +36,25 @@ const BasketGrid: FC = () => {
   );
 
   return (
-    <>
-      {gridHeader}
-      {products.map((product) => (
-        <GridItem {...product} />
-      ))}
-    </>
+    <div>
+      <>
+        {gridHeader}
+        {products.map((product) => (
+          <GridItem {...product} />
+        ))}
+        <Grid container style={{padding: '10px'}}>
+          <Grid item xs={4} style={{ textAlign: "center" }}>
+            <Typography variant="h3">Summary: </Typography>
+          </Grid>
+          <Grid item xs={8} style={{ textAlign: "center" }}>
+            <Typography variant="h3">
+              {totalPrice / 100}{" "}
+              {products[0].currency}
+            </Typography>
+          </Grid>
+        </Grid>
+      </>
+    </div>
   );
 };
 
