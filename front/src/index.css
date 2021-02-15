@@ -1,19 +1,25 @@
-body, html {
-    margin:0;
-    padding:0;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
 
 .Modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Modal--progress {
-    width:100px!important;
-    height:100px!important;
+  width: 100px !important;
+  height: 100px !important;
 }
 
 .Modal--progress:focus {
-    outline: none;
+  outline: none;
+}
+
+.BasketPage {
+    width:100%;
+    height: 100%;
 }

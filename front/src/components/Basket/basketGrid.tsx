@@ -40,7 +40,7 @@ const BasketGrid: FC<Props> = ({ products }) => {
   );
 
   return (
-    <div>
+    <div style={{position: 'relative', width: '100%'}}>
       <>
         {gridHeader}
         {products.map((product) => (

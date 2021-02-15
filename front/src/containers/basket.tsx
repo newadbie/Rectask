@@ -3,7 +3,8 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { GetActiveStep, GetProducts, IsFinalized } from "../selectors";
 
-import { Container, Typography } from "@material-ui/core";
+import { Container, Fade, Typography, Slide } from "@material-ui/core";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import BasketForm from "../components/Basket/form";
 import ConfirmForm from "../components/Basket/confirmForm";
@@ -33,12 +34,48 @@ const Basket: FC = () => {
           </Typography>
         ) : (
           <>
-            {activeStep === 0 ? <BasketGrid products={products} /> : null}
-            {activeStep === 1 ? <BasketForm /> : null}
-            {activeStep === 2 ? <ConfirmForm /> : null}
-            {activeStep === 3 ? <FinalPage /> : null}
+            <Fade
+              in={activeStep === 0}
+              timeout={500}
+              mountOnEnter
+              unmountOnExit
+            >
+              <div className="BasketPage">
+                <BasketGrid products={products} />
+              </div>
+            </Fade>
+            <Fade
+              in={activeStep === 1}
+              timeout={500}
+              mountOnEnter
+              unmountOnExit
+            >
+              <div className="BasketPage">
+                <BasketForm />
+              </div>
+            </Fade>
+            <Fade
+              in={activeStep === 2}
+              timeout={500}
+              mountOnEnter
+              unmountOnExit
+            >
+              <div className="BasketPage">
+                <ConfirmForm />
+              </div>
+            </Fade>
+            <Fade
+              in={activeStep === 3}
+              timeout={500}
+              mountOnEnter
+              unmountOnExit
+            >
+              <div className="BasketPage">
+                <FinalPage />
+              </div>
+            </Fade>
             <Stepper />
-          </>
+            </>
         )}
       </main>
     </Container>
