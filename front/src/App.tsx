@@ -16,7 +16,7 @@ const App: FC = () => {
     <Router>
       <AppBarComp />
       <Switch>
-        <Route path="/basket" onEnter={() => console.log("AUU")} exact>
+        <Route path="/basket" exact>
           <Basket />
         </Route>
         <Route path="/" exact>

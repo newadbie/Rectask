@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 
 import { useSelector, useDispatch } from "react-redux";
 import { GetPayData, GetProducts } from "../../selectors";
-import { startLoading, stopLoading, setError, clearError, goNext, finalize } from "../../slices/basketSlice";
+import { startLoading, stopLoading, setError, clearError, goNext, finalize, resetBasket } from "../../slices/basketSlice";
 
 import axios from "axios";
 
@@ -29,6 +29,9 @@ const ConfirmForm: FC = () => {
               "Something went wrong, service could not pass data to the API!",
           })
         );
+      },
+      onSuccess: () => {
+        dispatch(resetBasket());
       },
       onSettled: () => {
         dispatch(stopLoading());
@@ -55,7 +58,7 @@ const ConfirmForm: FC = () => {
   };
 
   return (
-    <div>
+    <div style={{position:'relative'}}>
       <header>
         <Typography variant="h6" style={{ textAlign: "center" }}>
           Confirm your data!

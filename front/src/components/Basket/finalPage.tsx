@@ -1,17 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { Container, Typography } from "@material-ui/core";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { GetError } from "../../selectors";
-import { resetBasket } from "../../slices/basketSlice";
+
 
 const FinalPage: FC = () => {
   const error = useSelector(GetError);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(resetBasket());
-  }, []);
 
   return (
     <Container>
