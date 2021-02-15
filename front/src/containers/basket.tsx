@@ -3,8 +3,7 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { GetActiveStep, GetProducts, IsFinalized } from "../selectors";
 
-import { Container, Fade, Typography, Slide } from "@material-ui/core";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Container, Fade, Typography } from "@material-ui/core";
 
 import BasketForm from "../components/Basket/form";
 import ConfirmForm from "../components/Basket/confirmForm";
@@ -75,7 +74,7 @@ const Basket: FC = () => {
               </div>
             </Fade>
             <Stepper />
-            </>
+          </>
         )}
       </main>
     </Container>
