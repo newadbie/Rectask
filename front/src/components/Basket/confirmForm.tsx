@@ -84,7 +84,7 @@ const ConfirmForm: FC = () => {
                   style={{ fontWeight: "bold" }}
                   className={`${classes.Typography} ${classes.UpperFirstLetter}`}
                 >
-                  {entry[0]}:
+                  {entry[0].split("_").join(" ")}:
                 </Typography>
               </Grid>
               <Grid item xs={6}>
